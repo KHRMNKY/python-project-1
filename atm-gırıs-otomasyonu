@@ -1,0 +1,52 @@
+ad_soyisim="kahraman_kaya"
+sıfre1=546212
+bakıye=2000
+
+while True:
+    sıfre=int(input("lufren_sıfrenızı_gırınız= "))
+    if sıfre==sıfre1:
+        print("sıfre dogrulanmıstır...")
+        break
+    
+    else:    
+        print("hatalı_gırıs")
+
+        sıfre2=int(input("lufren_sıfrenızı_tekrar_gırınız= "))
+        if sıfre2==sıfre1: 
+            print("sıfre_dogrulanmıstır")
+            break    
+        else:
+            print("sıfrenızı yanlıs gırdınız")
+                
+while True:
+    secım=int(input("""
+         hosgeldınız_saynın_musterımız
+               ----------------
+         bakıye_sormak_ıcın_lutfen_(1)' tuslayınız.
+         para_cekmek_ıcın_lutfen_(2)' tuslayınız.
+         para_yatırmak_ıcın_lutfen_(3)' tuslayınız.
+         cıkmak_ıcın_(x) tusuna_basınız.
+         
+      """))
+      
+    if secım==1:
+        print(f"bakıyenız==> {bakıye} ")   
+    elif secım==2:
+        while True:
+            para_cekme=int(input("lutfen_cekmek_ıstedıgınız_tutarı_gırınız = "))
+            if para_cekme>bakıye:
+                print("cekecegınız_mıktar_bakıyeden_buyuk_olamaz.")
+            else:
+                
+                bakıye=bakıye-para_cekme
+                print("para_cekılmıstır.")
+                print(f"bakıye= {bakıye}") 
+                break
+    elif secım==3:
+        para_yatır=int(input("yatırmak_ıstedıgınız_tutarı_gırınız= "))
+        bakıye=para_yatır+bakıye
+    
+        print(f"toplam_bakıye= {bakıye}")
+    elif secım==x:
+        print("guvenlı_bır_sekılde_cıkısınız_yapılmıstır.")
+        break
