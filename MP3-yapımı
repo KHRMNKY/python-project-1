@@ -1,0 +1,97 @@
+#Müzik Çalar Yapımı:mert hoca ders 32-benzerı
+from random import choice
+class MuzıkCalar():
+    def __init__(self,SarkıLıstesı=[]):
+        self.SarkıLıstesı=[]
+        self.SuanCalanSarkı=""
+        self.SesDuzeyı=100
+        self.Durum=True
+        
+    def MenuSecım(self):
+        print("""
+       ---Kahraman Kaya MP3'ne HoşGeldiniz--- 
+Şarkı listesi: {}
+Şu an çalan şarkı: {}
+Ses düzeyi: {}
+
+1)şarkı seç 
+2)ses artır               
+3)ses azalt              
+4)rastgele şarkı seç                
+5)şarkı ekle                
+6)şarkı sil              
+7)müziği kapat               
+              """.format(self.SarkıLıstesı,self.SuanCalanSarkı,self.SesDuzeyı))
+              
+        seç=int(input("lütfen seçiminizi yapınız (1-7)= "))    
+        while seç<1 or seç>7:
+            seç=int(input("lütfen doğru seçim yapınız (1-7)= ")) 
+        if seç==1:
+            sayac=0
+            for m in self.SarkıLıstesı:
+                sayac=sayac+1
+                print(f"{sayac}={m}")
+            number=int(input("çalmasını istediğiniz şarkı numarasını seçin= "))
+            self.SuanCalanSarkı=self.SarkıLıstesı[number-1]
+            
+        if seç==2:
+            self.SesArttır()
+        if seç==3:
+            self.SesAzalt()
+        if seç==4:
+            self.RastgeleSarkıSec()
+        if seç==5:
+            self.SarkıEkle()
+        if seç==6:
+            self.SarkıSıl()
+        if seç==7:
+            self.MuzıkKapa()
+                
+    def SarkıSec(self):
+        pass
+    
+    def SesArttır(self):
+        if self.SesDuzeyı==100:
+            print("ses düzeyi max noktasında")
+            pass
+        else:
+            ArtırmaSayısı=input("sesi kaç kere azaltmak istiyorsanız yazınız= ")
+            for n in range(0,int(ArtırmaSayısı)):
+                self.SesDuzeyı+=10
+            
+    def SesAzalt(self):
+        if self.SesDuzeyı==0:
+            print("ses düzeyi minumum noktasında...")
+            pass
+        else:
+            AzaltmaSayısı=input("sesi kaç kere azaltmak istiyorsanız yazınız= ")
+            for n in range(0,int(AzaltmaSayısı)):
+                self.SesDuzeyı-=10
+            
+    def RastgeleSarkıSec(self):
+        k=choice(self.SarkıLıstesı)
+        self.SuanCalanSarkı=k
+    
+    def SarkıEkle(self):
+        SarkıAdı=input("lutfen eklemek istediğiniz şarkı adını giriniz:")
+        self.SarkıLıstesı.append(SarkıAdı)
+        print(f"{SarkıAdı} şarkısı şarkı listenize eklenmiştir")
+
+    def SarkıSıl(self):
+        sayac=1
+        for m in self.SarkıLıstesı:
+            print(f"{sayac}-{m}")
+            sayac=sayac+1
+        sil=int(input("lütfen silmek istediğiniz şarkı indexsini giriniz= "))
+        self.SarkıLıstesı.pop(sil-1)
+        
+    def MuzıkKapa(self):
+        self.Durum=False
+        print("müzik kapatılmıştır...")
+
+    def Calıstır(self):
+        self.MenuSecım()
+        
+muzık=MuzıkCalar()
+while muzık.Durum:
+    muzık.Calıstır()
