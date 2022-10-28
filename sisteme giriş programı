@@ -1,0 +1,54 @@
+import json 
+veri={"isim":"kahraman","şifre":"hskl84","Gmail":"ktr546@gmail.com"}
+    
+
+class Tureng():
+    def __init__(self):
+        self.devam=True    
+        self.GırısYap()   
+    
+    def GırısYap(self):
+        isim=input("ısım griniz= ")
+        şifre=input("şifre giriniz= ")
+        with open("veri.txt","r") as do:
+            kaho=json.load(do)
+        for m in kaho["isim"]:
+            if m==isim and kaho["şifre"]==şifre :
+                print("giriş başarılı...")
+            else:
+                self.KayıtOl()
+                
+            
+    
+    
+    
+    def KayıtOl(self):
+        pass
+    
+    
+    
+    
+    def SıfremıUnuttum(self):
+        pass
+    
+    
+    
+    
+    
+    
+    def cıkıs(self):
+        self.devam=False
+        
+    
+tureng=Tureng()    
+while tureng.devam:
+    tureng.GırısYap()
+    
+    
+    
+    
+    
+    
+    
+    
+    
