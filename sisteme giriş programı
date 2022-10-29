@@ -2,38 +2,46 @@ import json
 class Menu():
     def __init__(self):
         self.Durum=True
+        
     
     
     def Calistir(self):
+        print("""
+1) Giriş Yap
+2) Kayıt Ol  
+3) Şifremi unuttum            
+              """)
         try:
-            secim=input(int("""
-    1) Giriş Yap
-    2) Kayıt Ol              
-                  """))
+            secim=int(input("lutfen seciminizi giriniz= "))
         except:
-            secim=input("lutfen uygun deger gırınız= ")
+            secim=int(input("ltfen uygun deger gırınız= "))
             
         if secim==1:
             self.Giris()
-        else:
+        elif secim==2:
             self.KayıtOl()
+        elif secim==3:
+            self.SifreDegistir()
     
     
     def Giris(self):
-        pass
+        print("şkadjfgh")
     
     
     def KayıtOl(self):
-        pass
+        print("krjgvmözxnb8798")
     
     
+    def SifreDegistir(self):
+        pass    
+        
     
     def Cikis(self):
         self.Durum=False
     
     
 menu=Menu()
-while menu.Durum():
+while menu.Durum:
     menu.Calistir()
     
 
