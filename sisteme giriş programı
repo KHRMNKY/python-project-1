@@ -1,7 +1,7 @@
 import json 
 veri={}
 veri["kullanicilar"]=[{"ad":"kahraman","sifre":"jhfdldg834","email":"kaya8876qgmail.com"},{"ad":"bayram","sifre":"jkh987","email":"byrm0987@gmail.com"}]
-with open("veri.txt","r",encoding="utf-8") as dosya:
+with open("veri.txt","w") as dosya:
     json.dump(veri,dosya)
 class Menu():
     def __init__(self):
@@ -34,7 +34,7 @@ class Menu():
         ad=input("ad= ")
         sifree=input("şifre= ")
         
-        with open("veri.txt","r",encoding="utf-8") as dosya:
+        with open("veri.txt","r") as dosya:
             n=json.load(dosya)
             for m in n["kullanicilar"]:
                 if m[ad]==ad and m[sifre]==sifree:
@@ -55,31 +55,33 @@ class Menu():
                 if ad!=ad and sifre!=şifre:
                     print("kaydınız bulunmamaktadır..")
                     self.KayıtOl()
-                    
-
-    
-    
+                
     def KayıtOl(self):
-        Kullanıcıİsmi=input("kullanıcı isminizi giriniz= ")
-        KullanıcıSifresi=input("kullanıcı şifrenizi giriniz= ")
-        kullanıcıGmail=("kullanıcı e-mailinizi giriniz= ")
-        bilgi={Kullanıcıİsmi,KullanıcıSifresi,kullanıcıGmail}
-        with open("veri.txt","w",encoding="utf-8") as dosya:
-            veri["kullanıcılar"].append(bilgi)
+        self.Kullanıcıİsmi=input("kullanıcı isminizi giriniz= ")
+        self.KullanıcıSifresi=input("kullanıcı şifrenizi giriniz= ")
+        self.kullanıcıGmail=input(("kullanıcı e-mailinizi giriniz= "))
+        bilgi={self.Kullanıcıİsmi,self.KullanıcıSifresi,self.kullanıcıGmail}
+        veri["kullanicilar"].append(bilgi)
+        with open("veri.txt","w") as dosya:
             json.dump(veri,dosya)
-            print("kullanıcı kaydedildi..")
-            self.Giris()
+        print("kullanıcı kaydedildi..")
+        self.Giris()
             
             
             
-    def SifremiUnuttum():
+    def SifremiUnuttum(self):
         pass
-        
-
+    
 
     
     def SifreDegistir(self):
-        pass    
+        adınız=input("adınızı giriniz= ")
+        with open("veri.txt","r") as dosya:
+            k=json.load(dosya)
+            for m in veri["kullanicilar"]:
+                if m["ad"]==adınız:
+                    m[sifre]=input("yeni şifrenizi giriniz= ")
+                    print("şireniz başarıyla değiştirildi..")    
         
     
     def Cikis(self):
@@ -89,5 +91,4 @@ class Menu():
 menu=Menu()
 while menu.Durum:
     menu.Calistir()
-    
     
