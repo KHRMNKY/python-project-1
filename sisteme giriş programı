@@ -1,36 +1,82 @@
 import json 
+veri={}
+veri["kullanicilar"]=[{"ad":"kahraman","sifre":"jhfdldg834","email":"kaya8876qgmail.com"},{"ad":"bayram","sifre":"jkh987","email":"byrm0987@gmail.com"}]
+with open("veri.txt","r",encoding="utf-8") as dosya:
+    json.dump(veri,dosya)
 class Menu():
     def __init__(self):
         self.Durum=True
         
     
-    
     def Calistir(self):
         print("""
-1) Giriş Yap
-2) Kayıt Ol  
-3) Şifremi unuttum            
+1 = Giriş Yap
+2 = Kayıt Ol  
+3 = Şifremi unuttum            
               """)
-        try:
-            secim=int(input("lutfen seciminizi giriniz= "))
-        except:
-            secim=int(input("ltfen uygun deger gırınız= "))
+        while True:
+            try:
+                secim=int(input("lutfen seciminizi giriniz= "))
+                break
+            except:
+                print("lütfen uygun deger gırınız= ")
             
         if secim==1:
             self.Giris()
         elif secim==2:
             self.KayıtOl()
         elif secim==3:
-            self.SifreDegistir()
+            self.SifremiUnuttum()
     
     
     def Giris(self):
-        print("şkadjfgh")
+        
+        ad=input("ad= ")
+        sifree=input("şifre= ")
+        
+        with open("veri.txt","r",encoding="utf-8") as dosya:
+            n=json.load(dosya)
+            for m in n["kullanicilar"]:
+                if m[ad]==ad and m[sifre]==sifree:
+                    print("giriş başarılı..")
+                    while True:
+                        try:
+                            istek=int(input("cıkmak için 1, şifre değiştermek için 2 yi tuşlayınız="))
+                            if istek==1:
+                                self.Cikis()
+                            if istek==2:
+                                self.SifreDegistir()
+                                break
+                        except:
+                            print("lütfen uygun değerler giriniz.")
+                        
+                if ad==ad and sifre!=şifre:
+                    print("şifrenizi yanlış girdiniz..")
+                if ad!=ad and sifre!=şifre:
+                    print("kaydınız bulunmamaktadır..")
+                    self.KayıtOl()
+                    
+
     
     
     def KayıtOl(self):
-        print("krjgvmözxnb8798")
-    
+        Kullanıcıİsmi=input("kullanıcı isminizi giriniz= ")
+        KullanıcıSifresi=input("kullanıcı şifrenizi giriniz= ")
+        kullanıcıGmail=("kullanıcı e-mailinizi giriniz= ")
+        bilgi={Kullanıcıİsmi,KullanıcıSifresi,kullanıcıGmail}
+        with open("veri.txt","w",encoding="utf-8") as dosya:
+            veri["kullanıcılar"].append(bilgi)
+            json.dump(veri,dosya)
+            print("kullanıcı kaydedildi..")
+            self.Giris()
+            
+            
+            
+    def SifremiUnuttum():
+        pass
+        
+
+
     
     def SifreDegistir(self):
         pass    
@@ -44,24 +90,4 @@ menu=Menu()
 while menu.Durum:
     menu.Calistir()
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
