@@ -1,6 +1,7 @@
-# {"kullanicilar": [{"ad": "kahraman", "sifre": "k", "email": "kaya8876qgmail.com"}, {"ad": "bayram", "sifre": "b", "email": "byrm0987@gmail.com"}, {"ad": "kahraman", "sifre": "mn", "email": "mn"}]}
-import json 
+veri={"kullanicilar": [{"ad": "kahraman", "sifre": "k", "email": "kaya8876qgmail.com"}, {"ad": "bayram", "sifre": "b", "email": "byrm0987@gmail.com"}]}
 
+import json 
+import random
 class Menu():
     def __init__(self):
         self.Durum=True
@@ -32,37 +33,42 @@ class Menu():
         sifre=input("şifre= ")
         try:
             with open("veri.txt","r") as dosya:
-                veriler=json.load(dosya)
+                veri=json.load(dosya)
+                
         except FileNotFoundError:
             with open("veri.txt","w") as dosya:
-                dosya.write("veri={"kullaniciler":[]}")
+                dosya.write("{}")
+            with open("veri.txt","r") as dosya:
+                veri=json.load(dosya)
 
-            for m in veriler["kullanicilar"]:
-                if m["ad"]==ad and m["sifre"]==sifre:
-                    print("giriş başarılı..")
-                    while True:
-                        try:
-                            istek=int(input("cıkmak için 1, şifre değiştermek için 2 yi tuşlayınız="))
-                            if istek==1:
-                                self.Cikis()
-                            if istek==2:
-                                self.SifreDegistir()
-                                break
-                        except:
-                            print("lütfen uygun değerler giriniz.")
-                        
-                if m["ad"]==ad and m["sifre"]!=sifre:
-                    print("şifrenizi yanlış girdiniz..")
-                    self.Giris()
-                if m["ad"]!=ad and m["sifre"]!=sifre:
-                    print("kaydınız bulunmamaktadır..")
-                    self.KayıtOl()
+        for m in veri["kullanicilar"]:
+            if m["ad"]==ad and m["sifre"]==sifre:
+                print("giriş başarılı..")
+                while True:
+                    try:
+                        istek=int(input("cıkmak için 1, şifre değiştermek için 2 yi tuşlayınız="))
+                        if istek==1:
+                            self.Cikis()
+                        if istek==2:
+                            self.SifreDegistir()
+                            break
+                    except:
+                        print("lütfen uygun değerler giriniz.")
+                    
+            if m["ad"]==ad and m["sifre"]!=sifre:
+                print("şifrenizi yanlış girdiniz..")
+                self.Giris()
+            if m["ad"]!=ad and m["sifre"]!=sifre:
+                print("kaydınız bulunmamaktadır..")
+                
+                print("kayıt yaptırınız"), self.KayıtOl()
                 
     def KayıtOl(self):
         Kullanıcıİsmi=input("kullanıcı isminizi giriniz= ")
         KullanıcıSifresi=input("kullanıcı şifrenizi giriniz= ")
         kullanıcıGmail=input(("kullanıcı e-mailinizi giriniz= "))
-        bilgi={Kullanıcıİsmi,KullanıcıSifresi,kullanıcıGmail}
+        
+# ??????????????????????????????????????????????????????????????????????????????????????????? alt satır        
         veri["kullanicilar"].append({"ad":Kullanıcıİsmi,"sifre":KullanıcıSifresi,"email":kullanıcıGmail})
         with open("veri.txt","w") as dosya:
             json.dump(veri,dosya)
@@ -72,7 +78,18 @@ class Menu():
             
             
     def SifremiUnuttum(self):
-        pass
+        Gmail=input("lütfen kayıtlı emailinizi giriniz= ")
+        with open("veri.txt","r") as dosya:
+            b=json.load(dosya)
+        if b["email"]==Gmail:
+            with open("kod.txt","w") as dosya:
+                dosya.write(str(randint(1,1000)))
+                
+            with open("kod.txt","r") as dosya:
+                kod=json.load(dosya)
+            kodd=input("kodunuzu giriniz= ")
+            if kodd==kod:
+                print("yeni şifre oluşturmak için aşağıdaki adımları takip edin."), self.SifreDegistir()
     
 
     
@@ -82,7 +99,7 @@ class Menu():
             verilerrr=json.load(dosya)
             for m in verilerrr["kullanicilar"]:
                 if m["ad"]==adınız:
-                    m[sifre]=input("yeni şifrenizi giriniz= ")
+                    m["sifre"]=input("yeni şifrenizi giriniz= ")
                     print("şireniz başarıyla değiştirildi..")    
         
     
@@ -94,3 +111,5 @@ menu=Menu()
 while menu.Durum:
     menu.Calistir()
     
+
+
