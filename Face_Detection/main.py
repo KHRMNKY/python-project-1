@@ -1,6 +1,6 @@
 import cv2
-face_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/face_detection/xml_dosya/haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/face_detection/xml_dosya/haarcascade_eye.xml')
+face_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/Downloads/Kaggle_Competitions/Competitons/python-project-1/Face_Detection/data/xml_dosya/haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/Downloads/Kaggle_Competitions/Competitons/python-project-1/Face_Detection/data/xml_dosya/haarcascade_eye.xml')
 def detect(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
