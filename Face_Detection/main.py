@@ -1,6 +1,17 @@
 import cv2
-face_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/Downloads/Kaggle_Competitions/Competitons/python-project-1/Face_Detection/data/xml_dosya/haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Desktop/Downloads/Kaggle_Competitions/Competitons/python-project-1/Face_Detection/data/xml_dosya/haarcascade_eye.xml')
+import os
+
+__file__="PYTHON-PROJECT-1"
+current_directory=os.path.dirname(os.path.abspath(__file__))
+
+xml_folder=os.path.join(current_directory,"Face_Detection","data","xml_dosya")
+
+face_cascade_path = os.path.join(xml_folder, 'haarcascade_frontalface_default.xml')
+eye_cascade_path = os.path.join(xml_folder, 'haarcascade_eye.xml')
+
+
+face_cascade = cv2.CascadeClassifier(face_cascade_path)
+eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
 def detect(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
