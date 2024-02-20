@@ -1,0 +1,23 @@
+from bs4 import BeautifulSoup as bs
+import requests
+
+URL= "https://www.demsagenetik.com.tr/sigir-irklari/"
+
+soup = bs(requests.get(URL).text, 'html.parser')
+
+cows = soup.find_all("div", class_ = "wpb_text_column wpb_content_element")
+
+for cow in cows[1:13]:
+
+    özellikler = cow.find_all("p")
+    cins = özellikler[0].strong.text
+    print(f"İNEK CİNSİ = {cins}")
+
+    özellik= " "
+    for eleman in özellikler[1:]:
+        
+        özellik = özellik + eleman.text 
+    print(f"{cins} ÖZELLİKLERİ = {özellik}")
+    print()
+
+
