@@ -1,0 +1,29 @@
+from bs4 import BeautifulSoup as bs
+import requests
+# burda tek sorun şu kaldı: her kitabın konu kısmı ilk p de olmadıgından bazılarının konusu yerıne baska bır sey cıkmıs.
+URL= "https://kitapdiyari.com.tr/100-temel-eser/"
+
+soup = bs(requests.get(URL).text, 'html.parser')
+
+books= soup.find_all("div", class_ = "tdb_module_loop td_module_wrap td-animation-stack td-cpt-post")
+
+for book in books: 
+
+    link_html = book.find('a')
+    link = link_html.get('href')
+    
+    soup1= bs(requests.get(str(link)).text, 'html.parser')
+    Kitabın_Anasayfası= soup1.find_all("div", class_ = "td_block_wrap tdb_single_content tdi_110 td-pb-border-top td_block_template_1 td-post-content tagdiv-type")
+    
+    Kitap_Ismi = Kitabın_Anasayfası[0].find("div", class_ = "tdb-block-inner td-fix-index").find("h2").text
+    Konu = Kitabın_Anasayfası[0].find("div", class_ = "tdb-block-inner td-fix-index").find("p").text
+
+    print(f"""
+KİTABIN İSMİ = {Kitap_Ismi}
+KİTABIN KONUSU = {Konu}
+              """)
+    print("----------------------------------------------")
+
+
+
+
