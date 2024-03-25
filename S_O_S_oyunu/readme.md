@@ -1,1 +1,1 @@
-![image](https://github.com/KHRMNKY/python-project-1/assets/83987220/075a4819-cfb7-4464-8ccf-5a66ee1d7192)
+![image](https://github.com/KHRMNKY/python-project-1/assets/83987220/0480e36f-e88b-4d9d-8893-0d21d2f681e2)
